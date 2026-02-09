@@ -35,6 +35,18 @@ export function CustomPortableText({
           </a>
         )
       },
+      'font-sans': ({children}) => {
+        return <span className="font-sans">{children}</span>
+      },
+      'font-serif': ({children}) => {
+        return <span className="font-serif">{children}</span>
+      },
+      'font-mono': ({children}) => {
+        return <span className="font-mono">{children}</span>
+      },
+      'font-kranky': ({children}) => {
+        return <span className="font-kranky">{children}</span>
+      },
     },
     types: {
       image: ({value}: {value: Image & {alt?: string; caption?: string}}) => {

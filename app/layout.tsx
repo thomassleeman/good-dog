@@ -1,5 +1,5 @@
 import './globals.css'
-import {IBM_Plex_Mono, Inter, PT_Serif} from 'next/font/google'
+import {IBM_Plex_Mono, Inter, Kranky, PT_Serif} from 'next/font/google'
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -18,10 +18,15 @@ const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['500', '700'],
 })
+const kranky = Kranky({
+  variable: '--font-kranky',
+  subsets: ['latin'],
+  weight: '400',
+})
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable}`}>
+    <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} ${kranky.variable}`}>
       <body>{children}</body>
     </html>
   )

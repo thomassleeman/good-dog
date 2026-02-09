@@ -4,20 +4,80 @@ export const homePageQuery = defineQuery(`
   *[_type == "home"][0]{
     _id,
     _type,
-    overview,
-    showcaseProjects[]{
-      _key,
-      ...@->{
-        _id,
-        _type,
-        coverImage,
-        overview,
-        "slug": slug.current,
-        tags,
-        title,
-      }
-    },
+    // Hero Section
     title,
+    titleFont,
+    tagline,
+    heroImage,
+    heroOverlayOpacity,
+    heroButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    // About Section
+    aboutTitle,
+    aboutContent,
+    aboutImage,
+    // Features Section
+    featuresTitle,
+    features[]{
+      _key,
+      title,
+      description,
+      icon
+    },
+    // Testimonials Section
+    testimonialsTitle,
+    testimonials[]->{
+      _id,
+      _type,
+      authorName,
+      authorPhoto,
+      quote,
+      petName,
+      rating
+    },
+    // CTA Section
+    ctaTitle,
+    ctaSubtitle,
+    ctaPhoneNumber,
+    ctaButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    ctaBackgroundImage,
+    // SEO
+    overview
+  }
+`)
+
+export const testimonialsQuery = defineQuery(`
+  *[_type == "testimonial"] | order(_createdAt desc){
+    _id,
+    _type,
+    authorName,
+    authorPhoto,
+    quote,
+    petName,
+    rating
   }
 `)
 
@@ -25,10 +85,46 @@ export const pagesBySlugQuery = defineQuery(`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
     _type,
-    body,
-    overview,
+    // Hero Section
     title,
+    titleFont,
+    overview,
+    heroImage,
+    heroOverlayOpacity,
+    heroButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    // Page Content
+    body,
     "slug": slug.current,
+    // CTA Section
+    ctaTitle,
+    ctaSubtitle,
+    ctaPhoneNumber,
+    ctaButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    ctaBackgroundImage
   }
 `)
 
@@ -36,15 +132,52 @@ export const projectBySlugQuery = defineQuery(`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     _type,
-    client,
-    coverImage,
-    description,
-    duration,
-    overview,
-    site,
-    "slug": slug.current,
-    tags,
+    // Hero Section
     title,
+    titleFont,
+    overview,
+    heroImage,
+    heroOverlayOpacity,
+    heroButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    // Project Details
+    coverImage,
+    duration,
+    client,
+    site,
+    tags,
+    "slug": slug.current,
+    // Project Content
+    description,
+    // CTA Section
+    ctaTitle,
+    ctaSubtitle,
+    ctaPhoneNumber,
+    ctaButtons[]{
+      _key,
+      label,
+      linkType,
+      internalLink->{
+        _type,
+        "slug": slug.current
+      },
+      externalUrl,
+      phoneNumber,
+      email,
+      style
+    },
+    ctaBackgroundImage
   }
 `)
 

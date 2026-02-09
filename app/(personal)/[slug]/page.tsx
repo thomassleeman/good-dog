@@ -1,9 +1,11 @@
 import {CustomPortableText} from '@/components/CustomPortableText'
-import {Header} from '@/components/Header'
+import {PageHeroSection} from '@/components/PageHeroSection'
+import {PageCtaSection} from '@/components/PageCtaSection'
+import {studioUrl} from '@/sanity/lib/api'
 import {sanityFetch} from '@/sanity/lib/live'
 import {pagesBySlugQuery, slugsByTypeQuery} from '@/sanity/lib/queries'
 import type {Metadata, ResolvingMetadata} from 'next'
-import {toPlainText, type PortableTextBlock} from 'next-sanity'
+import {createDataAttribute, toPlainText, type PortableTextBlock} from 'next-sanity'
 import {draftMode} from 'next/headers'
 import {notFound} from 'next/navigation'
 
@@ -45,32 +47,69 @@ export default async function PageSlugRoute({params}: Props) {
     notFound()
   }
 
-  const {body, overview, title} = data ?? {}
+  const dataAttribute =
+    data?._id && data._type
+      ? createDataAttribute({
+          baseUrl: studioUrl,
+          id: data._id,
+          type: data._type,
+        })
+      : null
+
+  const {
+    title,
+    titleFont,
+    overview,
+    heroImage,
+    heroOverlayOpacity,
+    heroButtons,
+    body,
+    ctaTitle,
+    ctaSubtitle,
+    ctaPhoneNumber,
+    ctaButtons,
+    ctaBackgroundImage,
+  } = data ?? {}
 
   return (
     <div>
-      <div className="mb-14">
-        {/* Header */}
-        <Header
-          id={data?._id || null}
-          type={data?._type || null}
-          path={['overview']}
-          title={title || (data?._id ? 'Untitled' : '404 Page Not Found')}
-          description={overview}
-        />
+      {/* Hero Section */}
+      <PageHeroSection
+        id={data?._id || ''}
+        type={data?._type || ''}
+        title={title || (data?._id ? 'Untitled' : '404 Page Not Found')}
+        titleFont={titleFont}
+        tagline={overview as PortableTextBlock[] | null}
+        heroImage={heroImage}
+        heroOverlayOpacity={heroOverlayOpacity}
+        heroButtons={heroButtons as any}
+        dataAttribute={dataAttribute}
+      />
 
-        {/* Body */}
-        {body && (
-          <CustomPortableText
-            id={data?._id || null}
-            type={data?._type || null}
-            path={['body']}
-            paragraphClasses="font-serif max-w-3xl text-gray-600 text-xl"
-            value={body as unknown as PortableTextBlock[]}
-          />
-        )}
-      </div>
-      <div className="absolute left-0 w-screen border-t" />
+      {/* Body Content */}
+      {body && (
+        <section className="py-16 md:py-24 px-4 max-w-4xl mx-auto">
+          <div className="prose prose-lg prose-gray max-w-none">
+            <CustomPortableText
+              id={data?._id || null}
+              type={data?._type || null}
+              path={['body']}
+              paragraphClasses="font-serif text-gray-600 text-xl mb-6"
+              value={body as unknown as PortableTextBlock[]}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <PageCtaSection
+        ctaTitle={ctaTitle}
+        ctaSubtitle={ctaSubtitle}
+        ctaPhoneNumber={ctaPhoneNumber}
+        ctaButtons={ctaButtons as any}
+        ctaBackgroundImage={ctaBackgroundImage}
+        dataAttribute={dataAttribute}
+      />
     </div>
   )
 }

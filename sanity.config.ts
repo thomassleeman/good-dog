@@ -8,7 +8,10 @@ import * as resolve from '@/sanity/plugins/resolve'
 import {pageStructure, singletonPlugin} from '@/sanity/plugins/settings'
 import page from '@/sanity/schemas/documents/page'
 import project from '@/sanity/schemas/documents/project'
+import testimonial from '@/sanity/schemas/documents/testimonial'
+import ctaButton from '@/sanity/schemas/objects/ctaButton'
 import duration from '@/sanity/schemas/objects/duration'
+import feature from '@/sanity/schemas/objects/feature'
 import milestone from '@/sanity/schemas/objects/milestone'
 import timeline from '@/sanity/schemas/objects/timeline'
 import home from '@/sanity/schemas/singletons/home'
@@ -37,7 +40,10 @@ export default defineConfig({
       duration,
       page,
       project,
+      testimonial,
       // Objects
+      ctaButton,
+      feature,
       milestone,
       timeline,
     ],

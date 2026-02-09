@@ -26,13 +26,20 @@ export function ProjectListItem(props: ProjectProps) {
   )
 }
 
+const fontClassMap: Record<string, string> = {
+  sans: 'font-sans',
+  serif: 'font-serif',
+  mono: 'font-mono',
+  kranky: 'font-kranky',
+}
+
 function TextBox({project}: {project: ShowcaseProject}) {
-  console.log(project)
+  const titleFontClass = project.titleFont ? fontClassMap[project.titleFont] || 'font-sans' : 'font-sans'
   return (
     <div className="relative mt-2 flex w-full flex-col justify-between p-3 xl:mt-0">
       <div>
         {/* Title */}
-        <div className="mb-2 text-xl font-extrabold tracking-tight md:text-2xl">
+        <div className={`mb-2 text-xl font-extrabold tracking-tight md:text-2xl ${titleFontClass}`}>
           {project.title}
         </div>
         {/* Overview  */}

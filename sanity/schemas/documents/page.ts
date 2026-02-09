@@ -1,17 +1,36 @@
 import {DocumentIcon, ImageIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {fontDecorators, fontOptions} from '../objects/fontOptions'
 
 export default defineType({
   type: 'document',
   name: 'page',
   title: 'Page',
   icon: DocumentIcon,
+  groups: [
+    {name: 'hero', title: 'Hero Section'},
+    {name: 'content', title: 'Page Content'},
+    {name: 'cta', title: 'Contact CTA'},
+  ],
   fields: [
+    // ===== HERO SECTION =====
     defineField({
       type: 'string',
       name: 'title',
       title: 'Title',
       validation: (rule) => rule.required(),
+      group: 'hero',
+    }),
+    defineField({
+      name: 'titleFont',
+      title: 'Title Font',
+      type: 'string',
+      options: {
+        list: fontOptions,
+        layout: 'radio',
+      },
+      initialValue: 'sans',
+      group: 'hero',
     }),
     defineField({
       type: 'slug',
@@ -21,12 +40,13 @@ export default defineType({
         source: 'title',
       },
       validation: (rule) => rule.required(),
+      group: 'hero',
     }),
     defineField({
       name: 'overview',
       description:
-        'Used both for the <meta> description tag for SEO, and the personal website subheader.',
-      title: 'Overview',
+        'Used both for the <meta> description tag for SEO, and displayed as tagline in the hero section.',
+      title: 'Overview / Tagline',
       type: 'array',
       of: [
         // Paragraphs
@@ -34,29 +54,54 @@ export default defineType({
           lists: [],
           marks: {
             annotations: [],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
-              },
-              {
-                title: 'Strong',
-                value: 'strong',
-              },
-            ],
+            decorators: fontDecorators,
           },
           styles: [],
           type: 'block',
         }),
       ],
       validation: (rule) => rule.max(155).required(),
+      group: 'hero',
     }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroOverlayOpacity',
+      title: 'Hero Overlay Opacity',
+      type: 'number',
+      description: 'Darkness of overlay (0-100). Default: 50',
+      validation: (rule) => rule.min(0).max(100),
+      initialValue: 50,
+      group: 'hero',
+    }),
+    defineField({
+      name: 'heroButtons',
+      title: 'Hero CTA Buttons',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'ctaButton',
+        }),
+      ],
+      validation: (rule) => rule.max(2),
+      group: 'hero',
+    }),
+
+    // ===== PAGE CONTENT =====
     defineField({
       type: 'array',
       name: 'body',
       title: 'Body',
       description:
         "This is where you can write the page's content. Including custom blocks like timelines for more a more visual display of information.",
+      group: 'content',
       of: [
         // Paragraphs
         defineArrayMember({
@@ -76,6 +121,7 @@ export default defineType({
                 ],
               },
             ],
+            decorators: fontDecorators,
           },
           styles: [],
         }),
@@ -113,6 +159,47 @@ export default defineType({
           ],
         }),
       ],
+    }),
+
+    // ===== CONTACT CTA SECTION =====
+    defineField({
+      name: 'ctaTitle',
+      title: 'CTA Section Title',
+      type: 'string',
+      group: 'cta',
+    }),
+    defineField({
+      name: 'ctaSubtitle',
+      title: 'CTA Section Subtitle',
+      type: 'string',
+      group: 'cta',
+    }),
+    defineField({
+      name: 'ctaPhoneNumber',
+      title: 'Phone Number',
+      type: 'string',
+      group: 'cta',
+    }),
+    defineField({
+      name: 'ctaButtons',
+      title: 'CTA Buttons',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'ctaButton',
+        }),
+      ],
+      validation: (rule) => rule.max(2),
+      group: 'cta',
+    }),
+    defineField({
+      name: 'ctaBackgroundImage',
+      title: 'CTA Background Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      group: 'cta',
     }),
   ],
   preview: {
