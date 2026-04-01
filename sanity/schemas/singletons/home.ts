@@ -93,45 +93,16 @@ export default defineType({
       group: 'about',
     }),
     defineField({
-      name: 'aboutContent',
-      title: 'About Section Content',
+      name: 'aboutBlocks',
+      title: 'About Section Blocks',
+      description:
+        'Each block is a row with text and an image. Set the position to control which side the image appears on.',
       type: 'array',
       of: [
         defineArrayMember({
-          type: 'block',
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-            decorators: fontDecorators,
-          },
-          styles: [
-            {title: 'Normal', value: 'normal'},
-            {title: 'Heading 2', value: 'h2'},
-            {title: 'Heading 3', value: 'h3'},
-          ],
+          type: 'aboutBlock',
         }),
       ],
-      group: 'about',
-    }),
-    defineField({
-      name: 'aboutImage',
-      title: 'About Section Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
       group: 'about',
     }),
 

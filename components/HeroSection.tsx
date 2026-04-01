@@ -1,6 +1,6 @@
+import {CtaButton} from '@/components/CtaButton'
 import {CustomPortableText} from '@/components/CustomPortableText'
 import ImageBox from '@/components/ImageBox'
-import {CtaButton} from '@/components/CtaButton'
 import type {HomePageQueryResult} from '@/sanity.types'
 
 interface HeroSectionProps {
@@ -16,14 +16,7 @@ const fontClassMap: Record<string, string> = {
 }
 
 export function HeroSection({data, dataAttribute}: HeroSectionProps) {
-  const {
-    title,
-    titleFont,
-    tagline,
-    heroImage,
-    heroOverlayOpacity = 50,
-    heroButtons,
-  } = data
+  const {title, titleFont, tagline, heroImage, heroOverlayOpacity = 50, heroButtons} = data
 
   const titleFontClass = titleFont ? fontClassMap[titleFont] || 'font-sans' : 'font-sans'
 
@@ -48,7 +41,7 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
         style={{backgroundColor: `rgba(0, 0, 0, ${(heroOverlayOpacity ?? 50) / 100})`}}
       />
 
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center py-6 px-4 max-w-4xl mx-auto">
         {title && (
           <h1
             className={`text-4xl md:text-6xl font-bold text-white mb-6 ${titleFontClass}`}

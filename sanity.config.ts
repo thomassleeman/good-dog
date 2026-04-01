@@ -9,6 +9,7 @@ import {pageStructure, singletonPlugin} from '@/sanity/plugins/settings'
 import page from '@/sanity/schemas/documents/page'
 import project from '@/sanity/schemas/documents/project'
 import testimonial from '@/sanity/schemas/documents/testimonial'
+import aboutBlock from '@/sanity/schemas/objects/aboutBlock'
 import ctaButton from '@/sanity/schemas/objects/ctaButton'
 import duration from '@/sanity/schemas/objects/duration'
 import feature from '@/sanity/schemas/objects/feature'
@@ -42,6 +43,7 @@ export default defineConfig({
       project,
       testimonial,
       // Objects
+      aboutBlock,
       ctaButton,
       feature,
       milestone,

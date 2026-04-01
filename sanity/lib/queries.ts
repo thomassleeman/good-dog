@@ -25,8 +25,12 @@ export const homePageQuery = defineQuery(`
     },
     // About Section
     aboutTitle,
-    aboutContent,
-    aboutImage,
+    aboutBlocks[]{
+      _key,
+      text,
+      image,
+      position
+    },
     // Features Section
     featuresTitle,
     features[]{
