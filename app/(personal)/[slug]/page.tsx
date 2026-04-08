@@ -1,3 +1,4 @@
+import {AboutSection} from '@/components/AboutSection'
 import {CustomPortableText} from '@/components/CustomPortableText'
 import {PageHeroSection} from '@/components/PageHeroSection'
 import {PageCtaSection} from '@/components/PageCtaSection'
@@ -85,6 +86,9 @@ export default async function PageSlugRoute({params}: Props) {
         heroButtons={heroButtons as any}
         dataAttribute={dataAttribute}
       />
+
+      {/* About Section */}
+      {data && <AboutSection data={data as any} dataAttribute={dataAttribute} />}
 
       {/* Body Content */}
       {body && (

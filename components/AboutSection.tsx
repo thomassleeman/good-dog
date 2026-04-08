@@ -1,9 +1,18 @@
 import {CustomPortableText} from '@/components/CustomPortableText'
 import ImageBox from '@/components/ImageBox'
-import type {HomePageQueryResult} from '@/sanity.types'
 
 interface AboutSectionProps {
-  data: NonNullable<HomePageQueryResult>
+  data: {
+    _id: string
+    _type: string
+    aboutTitle?: string | null
+    aboutBlocks?: Array<{
+      _key: string
+      text?: any
+      image?: any
+      position?: string | null
+    }> | null
+  }
   dataAttribute: any
 }
 

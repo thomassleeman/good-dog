@@ -108,6 +108,14 @@ export const pagesBySlugQuery = defineQuery(`
       email,
       style
     },
+    // About Section
+    aboutTitle,
+    aboutBlocks[]{
+      _key,
+      text,
+      image,
+      position
+    },
     // Page Content
     body,
     "slug": slug.current,
