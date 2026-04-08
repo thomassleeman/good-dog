@@ -22,12 +22,11 @@ export function Navbar(props: NavbarProps) {
       : null
 
   const homeItem = data?.menuItems?.find((item) => item._type === 'home')
-  const homeHref =
-    (homeItem ? resolveHref(homeItem._type, homeItem.slug) : '/') ?? '/'
+  const homeHref = (homeItem ? resolveHref(homeItem._type, homeItem.slug) : '/') ?? '/'
 
   return (
     <header
-      className="sticky top-0 z-50 bg-white/80 px-4 py-2 lg:py-4 backdrop-blur md:px-16 md:py-2 lg:px-32"
+      className="sticky top-0 z-50 bg-white/80 px-4 py-1 backdrop-blur md:px-16 md:py-2 lg:px-32"
       data-sanity={dataAttribute?.('menuItems')}
     >
       {/* Mobile: logo + hamburger + expandable links */}
