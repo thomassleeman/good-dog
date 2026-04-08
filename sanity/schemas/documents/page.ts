@@ -9,6 +9,7 @@ export default defineType({
   icon: DocumentIcon,
   groups: [
     {name: 'hero', title: 'Hero Section'},
+    {name: 'about', title: 'About Section'},
     {name: 'content', title: 'Page Content'},
     {name: 'cta', title: 'Contact CTA'},
   ],
@@ -92,6 +93,28 @@ export default defineType({
       ],
       validation: (rule) => rule.max(2),
       group: 'hero',
+    }),
+
+    // ===== ABOUT SECTION =====
+    defineField({
+      name: 'aboutTitle',
+      title: 'About Section Title',
+      description: 'Leave blank to leave the title out.',
+      type: 'string',
+      group: 'about',
+    }),
+    defineField({
+      name: 'aboutBlocks',
+      title: 'About Section Blocks',
+      description:
+        'Each block is a row with text and an image. Set the position to control which side the image appears on. Leave empty to hide this section.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'aboutBlock',
+        }),
+      ],
+      group: 'about',
     }),
 
     // ===== PAGE CONTENT =====
