@@ -1,5 +1,16 @@
 import './globals.css'
-import {IBM_Plex_Mono, Inter, Kranky, PT_Serif} from 'next/font/google'
+import {
+  Caveat,
+  Caveat_Brush,
+  Comic_Neue,
+  Handlee,
+  IBM_Plex_Mono,
+  Indie_Flower,
+  Inter,
+  Kranky,
+  PT_Serif,
+  Sansita,
+} from 'next/font/google'
 
 const serif = PT_Serif({
   variable: '--font-serif',
@@ -23,10 +34,43 @@ const kranky = Kranky({
   subsets: ['latin'],
   weight: '400',
 })
+const comicNeue = Comic_Neue({
+  variable: '--font-comic-neue',
+  subsets: ['latin'],
+  weight: '400',
+})
+const indieFlower = Indie_Flower({
+  variable: '--font-indie-flower',
+  subsets: ['latin'],
+  weight: '400',
+})
+const caveatBrush = Caveat_Brush({
+  variable: '--font-caveat-brush',
+  subsets: ['latin'],
+  weight: '400',
+})
+const caveat = Caveat({
+  variable: '--font-caveat',
+  subsets: ['latin'],
+  weight: '400',
+})
+const handlee = Handlee({
+  variable: '--font-handlee',
+  subsets: ['latin'],
+  weight: '400',
+})
+const sansita = Sansita({
+  variable: '--font-sansita',
+  subsets: ['latin'],
+  weight: '400',
+})
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${mono.variable} ${sans.variable} ${serif.variable} ${kranky.variable}`}>
+    <html
+      lang="en"
+      className={`${mono.variable} ${sans.variable} ${serif.variable} ${kranky.variable} ${comicNeue.variable} ${indieFlower.variable} ${caveatBrush.variable} ${caveat.variable} ${handlee.variable} ${sansita.variable}`}
+    >
       <body>{children}</body>
     </html>
   )
