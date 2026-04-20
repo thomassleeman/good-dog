@@ -1,7 +1,9 @@
+import {CtaButton} from '@/components/CtaButton'
 import {CustomPortableText} from '@/components/CustomPortableText'
 import ImageBox from '@/components/ImageBox'
-import {CtaButton} from '@/components/CtaButton'
 import type {PortableTextBlock} from 'next-sanity'
+import Image from 'next/image'
+import whatsApp from './../public/images/WhatsAppButtonGreenLarge.png'
 
 interface PageHeroSectionProps {
   id: string
@@ -77,17 +79,20 @@ export function PageHeroSection({
 
         {tagline && tagline.length > 0 && (
           <div
-            className="text-xl md:text-2xl text-white/90 mb-8"
+            className="text-xl md:text-2xl text-white/90 mb-4"
             data-sanity={dataAttribute?.('overview')}
           >
-            <CustomPortableText
-              id={id}
-              type={type}
-              path={['overview']}
-              value={tagline}
-            />
+            <CustomPortableText id={id} type={type} path={['overview']} value={tagline} />
           </div>
         )}
+        <a
+          className="inline-block mb-4"
+          aria-label="Chat on WhatsApp"
+          href="https://wa.me/447736916056"
+        >
+          {' '}
+          <Image src={whatsApp} alt="Chat on WhatsApp" width={200} height={60} />{' '}
+        </a>
 
         {heroButtons && heroButtons.length > 0 && (
           <div className="flex flex-wrap justify-center gap-4">

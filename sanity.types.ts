@@ -162,7 +162,17 @@ export type Page = {
   _updatedAt: string
   _rev: string
   title?: string
-  titleFont?: 'sans' | 'serif' | 'mono' | 'kranky'
+  titleFont?:
+    | 'sans'
+    | 'serif'
+    | 'mono'
+    | 'kranky'
+    | 'comic-neue'
+    | 'indie-flower'
+    | 'caveat-brush'
+    | 'caveat'
+    | 'handlee'
+    | 'sansita'
   slug?: Slug
   overview?: Array<{
     children?: Array<{
@@ -314,7 +324,17 @@ export type Home = {
   _updatedAt: string
   _rev: string
   title?: string
-  titleFont?: 'sans' | 'serif' | 'mono' | 'kranky'
+  titleFont?:
+    | 'sans'
+    | 'serif'
+    | 'mono'
+    | 'kranky'
+    | 'comic-neue'
+    | 'indie-flower'
+    | 'caveat-brush'
+    | 'caveat'
+    | 'handlee'
+    | 'sansita'
   tagline?: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -534,7 +554,18 @@ export type HomePageQueryResult = {
   _id: string
   _type: 'home'
   title: string | null
-  titleFont: 'kranky' | 'mono' | 'sans' | 'serif' | null
+  titleFont:
+    | 'caveat-brush'
+    | 'caveat'
+    | 'comic-neue'
+    | 'handlee'
+    | 'indie-flower'
+    | 'kranky'
+    | 'mono'
+    | 'sans'
+    | 'sansita'
+    | 'serif'
+    | null
   tagline: Array<{
     children?: Array<{
       marks?: Array<string>
@@ -718,7 +749,18 @@ export type PagesBySlugQueryResult = {
   _id: string
   _type: 'page'
   title: string | null
-  titleFont: 'kranky' | 'mono' | 'sans' | 'serif' | null
+  titleFont:
+    | 'caveat-brush'
+    | 'caveat'
+    | 'comic-neue'
+    | 'handlee'
+    | 'indie-flower'
+    | 'kranky'
+    | 'mono'
+    | 'sans'
+    | 'sansita'
+    | 'serif'
+    | null
   overview: Array<{
     children?: Array<{
       marks?: Array<string>
