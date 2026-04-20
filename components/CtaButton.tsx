@@ -21,7 +21,7 @@ export function CtaButton({button, dataAttribute}: CtaButtonProps) {
   if (!label) return null
 
   const baseStyles =
-    'inline-block px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-200'
+    'inline-flex items-center justify-center w-[200px] h-[45px] rounded-lg font-semibold text-base transition-all duration-200'
   const primaryStyles = 'bg-stone-600 text-white hover:bg-stone-700'
   const secondaryStyles = 'border-2 border-white text-white hover:bg-white hover:text-gray-900'
 

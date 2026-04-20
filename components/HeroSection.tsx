@@ -66,26 +66,21 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
             />
           </div>
         )}
-        <a
-          className="inline-block mb-4"
-          aria-label="Chat on WhatsApp"
-          href="https://wa.me/447736916056"
-        >
-          {' '}
-          <Image src={whatsApp} alt="Chat on WhatsApp" width={200} height={60} />{' '}
-        </a>
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+          <a aria-label="Chat on WhatsApp" href="https://wa.me/447736916056">
+            <Image src={whatsApp} alt="Chat on WhatsApp" width={200} height={60} />
+          </a>
 
-        {heroButtons && heroButtons.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-4">
-            {heroButtons.map((button, index) => (
+          {heroButtons &&
+            heroButtons.length > 0 &&
+            heroButtons.map((button, index) => (
               <CtaButton
                 key={button._key || index}
                 button={button as any}
                 dataAttribute={dataAttribute?.(['heroButtons', {_key: button._key}])}
               />
             ))}
-          </div>
-        )}
+        </div>
       </div>
     </section>
   )
