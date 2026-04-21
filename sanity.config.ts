@@ -7,6 +7,7 @@ import {apiVersion, dataset, projectId, studioUrl} from '@/sanity/lib/api'
 import * as resolve from '@/sanity/plugins/resolve'
 import {pageStructure, singletonPlugin} from '@/sanity/plugins/settings'
 import page from '@/sanity/schemas/documents/page'
+import project from '@/sanity/schemas/documents/project'
 import testimonial from '@/sanity/schemas/documents/testimonial'
 import aboutBlock from '@/sanity/schemas/objects/aboutBlock'
 import ctaButton from '@/sanity/schemas/objects/ctaButton'
@@ -39,6 +40,7 @@ export default defineConfig({
       // Documents
       duration,
       page,
+      project,
       testimonial,
       // Objects
       aboutBlock,

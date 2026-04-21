@@ -26,6 +26,13 @@ export default defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      description: 'Optional sub-heading displayed below the title. Useful if you want to split the heading into two parts.',
+      type: 'string',
+      group: 'hero',
+    }),
+    defineField({
       name: 'titleFont',
       title: 'Title Font',
       type: 'string',
@@ -65,7 +72,7 @@ export default defineType({
           type: 'block',
         }),
       ],
-      validation: (rule) => rule.max(155).required(),
+      validation: (rule) => rule.max(155),
       group: 'hero',
     }),
     defineField({

@@ -31,6 +31,12 @@ const fontClassMap: Record<string, string> = {
   serif: 'font-serif',
   mono: 'font-mono',
   kranky: 'font-kranky',
+  'comic-neue': 'font-comic-neue',
+  'indie-flower': 'font-indie-flower',
+  'caveat-brush': 'font-caveat-brush',
+  caveat: 'font-caveat',
+  handlee: 'font-handlee',
+  sansita: 'font-sansita',
 }
 
 function TextBox({project}: {project: ShowcaseProject}) {

@@ -71,6 +71,7 @@ export default async function PageSlugRoute({params}: Props) {
     ctaButtons,
     ctaBackgroundImage,
   } = data ?? {}
+  const subtitle = (data as any)?.subtitle as string | null | undefined
 
   return (
     <div>
@@ -79,6 +80,7 @@ export default async function PageSlugRoute({params}: Props) {
         id={data?._id || ''}
         type={data?._type || ''}
         title={title || (data?._id ? 'Untitled' : '404 Page Not Found')}
+        subtitle={subtitle}
         titleFont={titleFont}
         tagline={overview as PortableTextBlock[] | null}
         heroImage={heroImage}

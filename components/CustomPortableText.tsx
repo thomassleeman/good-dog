@@ -47,6 +47,24 @@ export function CustomPortableText({
       'font-kranky': ({children}) => {
         return <span className="font-kranky">{children}</span>
       },
+      'font-comic-neue': ({children}) => {
+        return <span className="font-comic-neue">{children}</span>
+      },
+      'font-indie-flower': ({children}) => {
+        return <span className="font-indie-flower">{children}</span>
+      },
+      'font-caveat-brush': ({children}) => {
+        return <span className="font-caveat-brush">{children}</span>
+      },
+      'font-caveat': ({children}) => {
+        return <span className="font-caveat">{children}</span>
+      },
+      'font-handlee': ({children}) => {
+        return <span className="font-handlee">{children}</span>
+      },
+      'font-sansita': ({children}) => {
+        return <span className="font-sansita">{children}</span>
+      },
     },
     types: {
       image: ({value}: {value: Image & {alt?: string; caption?: string}}) => {

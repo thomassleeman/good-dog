@@ -87,6 +87,7 @@ export default async function ProjectSlugRoute({params}: Props) {
     ctaButtons,
     ctaBackgroundImage,
   } = data ?? {}
+  const subtitle = (data as any)?.subtitle as string | null | undefined
 
   const startYear = duration?.start ? new Date(duration.start).getFullYear() : undefined
   const endYear = duration?.end ? new Date(duration?.end).getFullYear() : 'Now'
@@ -101,6 +102,7 @@ export default async function ProjectSlugRoute({params}: Props) {
         id={data?._id || ''}
         type={data?._type || ''}
         title={title || (data?._id ? 'Untitled' : '404 Project Not Found')}
+        subtitle={subtitle}
         titleFont={titleFont}
         tagline={overview as PortableTextBlock[] | null}
         heroImage={backgroundImage}

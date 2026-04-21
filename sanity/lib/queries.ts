@@ -6,6 +6,7 @@ export const homePageQuery = defineQuery(`
     _type,
     // Hero Section
     title,
+    subtitle,
     titleFont,
     tagline,
     heroImage,
@@ -91,6 +92,7 @@ export const pagesBySlugQuery = defineQuery(`
     _type,
     // Hero Section
     title,
+    subtitle,
     titleFont,
     overview,
     heroImage,
@@ -146,6 +148,7 @@ export const projectBySlugQuery = defineQuery(`
     _type,
     // Hero Section
     title,
+    subtitle,
     titleFont,
     overview,
     heroImage,

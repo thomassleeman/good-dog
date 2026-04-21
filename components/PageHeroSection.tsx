@@ -9,6 +9,7 @@ interface PageHeroSectionProps {
   id: string
   type: string
   title: string
+  subtitle?: string | null
   titleFont?: string | null
   tagline?: PortableTextBlock[] | null
   heroImage?: any
@@ -31,12 +32,19 @@ const fontClassMap: Record<string, string> = {
   serif: 'font-serif',
   mono: 'font-mono',
   kranky: 'font-kranky',
+  'comic-neue': 'font-comic-neue',
+  'indie-flower': 'font-indie-flower',
+  'caveat-brush': 'font-caveat-brush',
+  caveat: 'font-caveat',
+  handlee: 'font-handlee',
+  sansita: 'font-sansita',
 }
 
 export function PageHeroSection({
   id,
   type,
   title,
+  subtitle,
   titleFont,
   tagline,
   heroImage,
@@ -75,6 +83,15 @@ export function PageHeroSection({
           >
             {title}
           </h1>
+        )}
+
+        {subtitle && (
+          <h2
+            className={`text-2xl md:text-4xl font-semibold text-white mb-6 ${titleFontClass}`}
+            data-sanity={dataAttribute?.('subtitle')}
+          >
+            {subtitle}
+          </h2>
         )}
 
         {tagline && tagline.length > 0 && (

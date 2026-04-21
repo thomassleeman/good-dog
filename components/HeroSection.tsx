@@ -15,10 +15,17 @@ const fontClassMap: Record<string, string> = {
   serif: 'font-serif',
   mono: 'font-mono',
   kranky: 'font-kranky',
+  'comic-neue': 'font-comic-neue',
+  'indie-flower': 'font-indie-flower',
+  'caveat-brush': 'font-caveat-brush',
+  caveat: 'font-caveat',
+  handlee: 'font-handlee',
+  sansita: 'font-sansita',
 }
 
 export function HeroSection({data, dataAttribute}: HeroSectionProps) {
   const {title, titleFont, tagline, heroImage, heroOverlayOpacity = 50, heroButtons} = data
+  const subtitle = (data as any).subtitle as string | null | undefined
 
   const titleFontClass = titleFont ? fontClassMap[titleFont] || 'font-sans' : 'font-sans'
 
@@ -51,6 +58,15 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
           >
             {title}
           </h1>
+        )}
+
+        {subtitle && (
+          <h2
+            className={`text-2xl md:text-4xl font-semibold text-white mb-6 ${titleFontClass}`}
+            data-sanity={dataAttribute?.('subtitle')}
+          >
+            {subtitle}
+          </h2>
         )}
 
         {tagline && tagline.length > 0 && (
