@@ -11,16 +11,16 @@ interface HeroSectionProps {
 }
 
 const fontClassMap: Record<string, string> = {
-  sans: 'font-sans',
-  serif: 'font-serif',
-  mono: 'font-mono',
-  kranky: 'font-kranky',
+  'sans': 'font-sans',
+  'serif': 'font-serif',
+  'mono': 'font-mono',
+  'kranky': 'font-kranky',
   'comic-neue': 'font-comic-neue',
   'indie-flower': 'font-indie-flower',
   'caveat-brush': 'font-caveat-brush',
-  caveat: 'font-caveat',
-  handlee: 'font-handlee',
-  sansita: 'font-sansita',
+  'caveat': 'font-caveat',
+  'handlee': 'font-handlee',
+  'sansita': 'font-sansita',
 }
 
 export function HeroSection({data, dataAttribute}: HeroSectionProps) {
@@ -30,7 +30,7 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
   const titleFontClass = titleFont ? fontClassMap[titleFont] || 'font-sans' : 'font-sans'
 
   return (
-    <section className="relative min-h-[70vh] w-full flex items-center justify-center">
+    <section className="relative min-h-[70vh] w-full flex">
       {heroImage && (
         <div className="absolute inset-0">
           <ImageBox
@@ -50,25 +50,26 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
         style={{backgroundColor: `rgba(0, 0, 0, ${(heroOverlayOpacity ?? 50) / 100})`}}
       />
 
-      <div className="relative z-10 text-center py-6 px-4 max-w-4xl mx-auto">
-        {title && (
-          <h1
-            className={`text-4xl md:text-6xl font-bold text-white mb-6 ${titleFontClass}`}
-            data-sanity={dataAttribute?.('title')}
-          >
-            {title}
-          </h1>
-        )}
+      <div className="flex flex-col justify-between z-10 text-center py-6 px-4 max-w-4xl mx-auto w-full">
+        <div>
+          {title && (
+            <h1
+              className={`text-6xl font-bold text-white mb-4 ${titleFontClass}`}
+              data-sanity={dataAttribute?.('title')}
+            >
+              {title}
+            </h1>
+          )}
 
-        {subtitle && (
-          <h2
-            className={`text-2xl md:text-4xl font-semibold text-white mb-6 ${titleFontClass}`}
-            data-sanity={dataAttribute?.('subtitle')}
-          >
-            {subtitle}
-          </h2>
-        )}
-
+          {subtitle && (
+            <h2
+              className={`text-4xl font-semibold text-white mb-6 ${titleFontClass}`}
+              data-sanity={dataAttribute?.('subtitle')}
+            >
+              {subtitle}
+            </h2>
+          )}
+        </div>
         {tagline && tagline.length > 0 && (
           <div
             className="text-xl md:text-2xl text-white/90 mb-4"
