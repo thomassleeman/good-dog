@@ -1,4 +1,5 @@
 import {AboutSection} from '@/components/AboutSection'
+import {ContactForm} from '@/components/ContactForm'
 import {CustomPortableText} from '@/components/CustomPortableText'
 import {PageHeroSection} from '@/components/PageHeroSection'
 import {PageCtaSection} from '@/components/PageCtaSection'
@@ -41,6 +42,7 @@ export async function generateStaticParams() {
 }
 
 export default async function PageSlugRoute({params}: Props) {
+  const {slug} = await params
   const {data} = await sanityFetch({query: pagesBySlugQuery, params})
 
   // Only show the 404 page if we're in production, when in draft mode we might be about to create a page on this slug, and live reload won't work on the 404 route
@@ -106,6 +108,9 @@ export default async function PageSlugRoute({params}: Props) {
           </div>
         </section>
       )}
+
+      {/* Contact Form (only on /contact) */}
+      {slug === 'contact' && <ContactForm />}
 
       {/* CTA Section */}
       <PageCtaSection
