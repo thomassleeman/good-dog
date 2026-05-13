@@ -1,8 +1,8 @@
 import {AboutSection} from '@/components/AboutSection'
 import {ContactForm} from '@/components/ContactForm'
 import {CustomPortableText} from '@/components/CustomPortableText'
-import {PageHeroSection} from '@/components/PageHeroSection'
 import {PageCtaSection} from '@/components/PageCtaSection'
+import {PageHeroSection} from '@/components/PageHeroSection'
 import {studioUrl} from '@/sanity/lib/api'
 import {sanityFetch} from '@/sanity/lib/live'
 import {pagesBySlugQuery, slugsByTypeQuery} from '@/sanity/lib/queries'
@@ -109,8 +109,8 @@ export default async function PageSlugRoute({params}: Props) {
         </section>
       )}
 
-      {/* Contact Form (only on /contact) */}
-      {slug === 'contact' && <ContactForm />}
+      {/* Contact Form (only on /contact-me) */}
+      {slug === 'contact-me' && <ContactForm />}
 
       {/* CTA Section */}
       <PageCtaSection

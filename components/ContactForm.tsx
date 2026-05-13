@@ -54,7 +54,8 @@ export function ContactForm() {
   }
 
   return (
-    <section className="py-16 md:py-24 px-4 max-w-2xl mx-auto">
+    <section className="py-4 px-4 max-w-xl mx-auto p-6 sm:outline outline-1 outline-stone-200 rounded-lg mb-12">
+      <h2 className="text-2xl text-stone-900 mb-6 font-light">Contact Me</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate={false}>
         <div>
           <label htmlFor="contact-name" className={labelClasses}>
@@ -130,7 +131,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center w-full sm:w-[200px] h-[45px] rounded-lg font-semibold text-base bg-stone-600 text-white hover:bg-stone-700 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center w-full sm:w-[200px] h-[45px] rounded-lg font-semibold text-base bg-green-600 text-white hover:bg-green-500 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Sending…' : 'Send message'}
           </button>
