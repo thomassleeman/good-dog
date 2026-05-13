@@ -17,9 +17,9 @@ export function TimelineItem({milestone}: {milestone: MilestoneItem}) {
           <ImageBox
             image={image}
             alt={title || 'Timeline item icon'}
-            size="10vw"
-            width={65}
-            height={65}
+            size="65px"
+            width={130}
+            height={130}
           />
         </div>
         {/* Vertical line */}

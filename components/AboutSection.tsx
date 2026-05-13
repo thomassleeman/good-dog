@@ -48,8 +48,9 @@ export function AboutSection({data, dataAttribute}: AboutSectionProps) {
                 <ImageBox
                   image={block.image}
                   alt="About us"
-                  width={600}
-                  height={400}
+                  width={1200}
+                  height={800}
+                  size="(min-width: 768px) 50vw, 100vw"
                   classesWrapper="rounded-lg shadow-lg"
                 />
               </div>

@@ -8,8 +8,10 @@ const imageBuilder = createImageUrlBuilder({
 })
 
 export const urlForImage = (source: Image | null | undefined) => {
-  // Ensure that source image contains a valid reference
-  if (!source?.asset?._ref) {
+  if (!source) return undefined
+  // Accept either a raw reference (`asset._ref`) or a dereferenced asset (`asset._id`).
+  const asset = source.asset as {_ref?: string; _id?: string} | undefined
+  if (!asset?._ref && !asset?._id) {
     return undefined
   }
 

@@ -62,8 +62,9 @@ export function TestimonialsSection({data, dataAttribute}: TestimonialsSectionPr
                   <ImageBox
                     image={testimonial.authorPhoto}
                     alt={testimonial.authorName || 'Customer'}
-                    width={48}
-                    height={48}
+                    width={96}
+                    height={96}
+                    size="48px"
                     classesWrapper="w-full h-full"
                   />
                 </div>

@@ -1,5 +1,9 @@
 import {defineQuery} from 'next-sanity'
 
+// Every image projection below dereferences `asset` and pulls `metadata.lqip`
+// (a tiny base64 thumbnail) plus dimensions so the renderer can show a blur
+// placeholder instantly instead of a long grey box while bytes load.
+
 export const homePageQuery = defineQuery(`
   *[_type == "home"][0]{
     _id,
@@ -9,7 +13,7 @@ export const homePageQuery = defineQuery(`
     subtitle,
     titleFont,
     tagline,
-    heroImage,
+    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},
     heroOverlayOpacity,
     heroButtons[]{
       _key,
@@ -29,7 +33,7 @@ export const homePageQuery = defineQuery(`
     aboutBlocks[]{
       _key,
       text,
-      image,
+      image{..., asset->{_id, url, metadata{lqip, dimensions}}},
       position
     },
     // Features Section
@@ -46,7 +50,7 @@ export const homePageQuery = defineQuery(`
       _id,
       _type,
       authorName,
-      authorPhoto,
+      authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},
       quote,
       petName,
       rating
@@ -68,7 +72,7 @@ export const homePageQuery = defineQuery(`
       email,
       style
     },
-    ctaBackgroundImage,
+    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}},
     // SEO
     overview
   }
@@ -79,7 +83,7 @@ export const testimonialsQuery = defineQuery(`
     _id,
     _type,
     authorName,
-    authorPhoto,
+    authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},
     quote,
     petName,
     rating
@@ -95,7 +99,7 @@ export const pagesBySlugQuery = defineQuery(`
     subtitle,
     titleFont,
     overview,
-    heroImage,
+    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},
     heroOverlayOpacity,
     heroButtons[]{
       _key,
@@ -115,7 +119,7 @@ export const pagesBySlugQuery = defineQuery(`
     aboutBlocks[]{
       _key,
       text,
-      image,
+      image{..., asset->{_id, url, metadata{lqip, dimensions}}},
       position
     },
     // Page Content
@@ -138,7 +142,7 @@ export const pagesBySlugQuery = defineQuery(`
       email,
       style
     },
-    ctaBackgroundImage
+    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}
   }
 `)
 
@@ -151,7 +155,7 @@ export const projectBySlugQuery = defineQuery(`
     subtitle,
     titleFont,
     overview,
-    heroImage,
+    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},
     heroOverlayOpacity,
     heroButtons[]{
       _key,
@@ -167,7 +171,7 @@ export const projectBySlugQuery = defineQuery(`
       style
     },
     // Project Details
-    coverImage,
+    coverImage{..., asset->{_id, url, metadata{lqip, dimensions}}},
     duration,
     client,
     site,
@@ -192,7 +196,7 @@ export const projectBySlugQuery = defineQuery(`
       email,
       style
     },
-    ctaBackgroundImage
+    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}
   }
 `)
 

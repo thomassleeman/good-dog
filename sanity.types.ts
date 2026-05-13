@@ -660,7 +660,7 @@ type ArrayOf<T> = Array<
 
 // Source: sanity/lib/queries.ts
 // Variable: homePageQuery
-// Query: *[_type == "home"][0]{    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    tagline,    heroImage,    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // About Section    aboutTitle,    aboutBlocks[]{      _key,      text,      image,      position    },    // Features Section    featuresTitle,    features[]{      _key,      title,      description,      icon    },    // Testimonials Section    testimonialsTitle,    testimonials[]->{      _id,      _type,      authorName,      authorPhoto,      quote,      petName,      rating    },    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage,    // SEO    overview  }
+// Query: *[_type == "home"][0]{    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    tagline,    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // About Section    aboutTitle,    aboutBlocks[]{      _key,      text,      image{..., asset->{_id, url, metadata{lqip, dimensions}}},      position    },    // Features Section    featuresTitle,    features[]{      _key,      title,      description,      icon    },    // Testimonials Section    testimonialsTitle,    testimonials[]->{      _id,      _type,      authorName,      authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},      quote,      petName,      rating    },    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}},    // SEO    overview  }
 export type HomePageQueryResult = {
   _id: string
   _type: 'home'
@@ -693,7 +693,14 @@ export type HomePageQueryResult = {
     _key: string
   }> | null
   heroImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -735,7 +742,14 @@ export type HomePageQueryResult = {
       _key: string
     }> | null
     image: {
-      asset?: SanityImageAssetReference
+      asset: {
+        _id: string
+        url: string | null
+        metadata: {
+          lqip: string | null
+          dimensions: SanityImageDimensions | null
+        } | null
+      } | null
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -756,7 +770,14 @@ export type HomePageQueryResult = {
     _type: 'testimonial'
     authorName: string | null
     authorPhoto: {
-      asset?: SanityImageAssetReference
+      asset: {
+        _id: string
+        url: string | null
+        metadata: {
+          lqip: string | null
+          dimensions: SanityImageDimensions | null
+        } | null
+      } | null
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -796,7 +817,14 @@ export type HomePageQueryResult = {
     style: 'primary' | 'secondary' | null
   }> | null
   ctaBackgroundImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -824,13 +852,20 @@ export type HomePageQueryResult = {
 
 // Source: sanity/lib/queries.ts
 // Variable: testimonialsQuery
-// Query: *[_type == "testimonial"] | order(_createdAt desc){    _id,    _type,    authorName,    authorPhoto,    quote,    petName,    rating  }
+// Query: *[_type == "testimonial"] | order(_createdAt desc){    _id,    _type,    authorName,    authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},    quote,    petName,    rating  }
 export type TestimonialsQueryResult = Array<{
   _id: string
   _type: 'testimonial'
   authorName: string | null
   authorPhoto: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -856,7 +891,7 @@ export type TestimonialsQueryResult = Array<{
 
 // Source: sanity/lib/queries.ts
 // Variable: pagesBySlugQuery
-// Query: *[_type == "page" && slug.current == $slug][0] {    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    overview,    heroImage,    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // About Section    aboutTitle,    aboutBlocks[]{      _key,      text,      image,      position    },    // Page Content    body,    "slug": slug.current,    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage  }
+// Query: *[_type == "page" && slug.current == $slug][0] {    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    overview,    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // About Section    aboutTitle,    aboutBlocks[]{      _key,      text,      image{..., asset->{_id, url, metadata{lqip, dimensions}}},      position    },    // Page Content    body,    "slug": slug.current,    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}  }
 export type PagesBySlugQueryResult = {
   _id: string
   _type: 'page'
@@ -889,7 +924,14 @@ export type PagesBySlugQueryResult = {
     _key: string
   }> | null
   heroImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -931,7 +973,14 @@ export type PagesBySlugQueryResult = {
       _key: string
     }> | null
     image: {
-      asset?: SanityImageAssetReference
+      asset: {
+        _id: string
+        url: string | null
+        metadata: {
+          lqip: string | null
+          dimensions: SanityImageDimensions | null
+        } | null
+      } | null
       media?: unknown
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
@@ -990,7 +1039,14 @@ export type PagesBySlugQueryResult = {
     style: 'primary' | 'secondary' | null
   }> | null
   ctaBackgroundImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -1000,7 +1056,7 @@ export type PagesBySlugQueryResult = {
 
 // Source: sanity/lib/queries.ts
 // Variable: projectBySlugQuery
-// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    overview,    heroImage,    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // Project Details    coverImage,    duration,    client,    site,    tags,    "slug": slug.current,    // Project Content    description,    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage  }
+// Query: *[_type == "project" && slug.current == $slug][0] {    _id,    _type,    // Hero Section    title,    subtitle,    titleFont,    overview,    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},    heroOverlayOpacity,    heroButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    // Project Details    coverImage{..., asset->{_id, url, metadata{lqip, dimensions}}},    duration,    client,    site,    tags,    "slug": slug.current,    // Project Content    description,    // CTA Section    ctaTitle,    ctaSubtitle,    ctaPhoneNumber,    ctaButtons[]{      _key,      label,      linkType,      internalLink->{        _type,        "slug": slug.current      },      externalUrl,      phoneNumber,      email,      style    },    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}  }
 export type ProjectBySlugQueryResult = {
   _id: string
   _type: 'project'
@@ -1033,7 +1089,14 @@ export type ProjectBySlugQueryResult = {
     _key: string
   }> | null
   heroImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -1054,7 +1117,14 @@ export type ProjectBySlugQueryResult = {
     style: 'primary' | 'secondary' | null
   }> | null
   coverImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -1115,7 +1185,14 @@ export type ProjectBySlugQueryResult = {
     style: 'primary' | 'secondary' | null
   }> | null
   ctaBackgroundImage: {
-    asset?: SanityImageAssetReference
+    asset: {
+      _id: string
+      url: string | null
+      metadata: {
+        lqip: string | null
+        dimensions: SanityImageDimensions | null
+      } | null
+    } | null
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
@@ -1179,10 +1256,10 @@ export type SlugsByTypeQueryResult = Array<{
 
 declare module '@sanity/client' {
   interface SanityQueries {
-    '\n  *[_type == "home"][0]{\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    tagline,\n    heroImage,\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // About Section\n    aboutTitle,\n    aboutBlocks[]{\n      _key,\n      text,\n      image,\n      position\n    },\n    // Features Section\n    featuresTitle,\n    features[]{\n      _key,\n      title,\n      description,\n      icon\n    },\n    // Testimonials Section\n    testimonialsTitle,\n    testimonials[]->{\n      _id,\n      _type,\n      authorName,\n      authorPhoto,\n      quote,\n      petName,\n      rating\n    },\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage,\n    // SEO\n    overview\n  }\n': HomePageQueryResult
-    '\n  *[_type == "testimonial"] | order(_createdAt desc){\n    _id,\n    _type,\n    authorName,\n    authorPhoto,\n    quote,\n    petName,\n    rating\n  }\n': TestimonialsQueryResult
-    '\n  *[_type == "page" && slug.current == $slug][0] {\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    overview,\n    heroImage,\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // About Section\n    aboutTitle,\n    aboutBlocks[]{\n      _key,\n      text,\n      image,\n      position\n    },\n    // Page Content\n    body,\n    "slug": slug.current,\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage\n  }\n': PagesBySlugQueryResult
-    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    overview,\n    heroImage,\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // Project Details\n    coverImage,\n    duration,\n    client,\n    site,\n    tags,\n    "slug": slug.current,\n    // Project Content\n    description,\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage\n  }\n': ProjectBySlugQueryResult
+    '\n  *[_type == "home"][0]{\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    tagline,\n    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // About Section\n    aboutTitle,\n    aboutBlocks[]{\n      _key,\n      text,\n      image{..., asset->{_id, url, metadata{lqip, dimensions}}},\n      position\n    },\n    // Features Section\n    featuresTitle,\n    features[]{\n      _key,\n      title,\n      description,\n      icon\n    },\n    // Testimonials Section\n    testimonialsTitle,\n    testimonials[]->{\n      _id,\n      _type,\n      authorName,\n      authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},\n      quote,\n      petName,\n      rating\n    },\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    // SEO\n    overview\n  }\n': HomePageQueryResult
+    '\n  *[_type == "testimonial"] | order(_createdAt desc){\n    _id,\n    _type,\n    authorName,\n    authorPhoto{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    quote,\n    petName,\n    rating\n  }\n': TestimonialsQueryResult
+    '\n  *[_type == "page" && slug.current == $slug][0] {\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    overview,\n    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // About Section\n    aboutTitle,\n    aboutBlocks[]{\n      _key,\n      text,\n      image{..., asset->{_id, url, metadata{lqip, dimensions}}},\n      position\n    },\n    // Page Content\n    body,\n    "slug": slug.current,\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}\n  }\n': PagesBySlugQueryResult
+    '\n  *[_type == "project" && slug.current == $slug][0] {\n    _id,\n    _type,\n    // Hero Section\n    title,\n    subtitle,\n    titleFont,\n    overview,\n    heroImage{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    heroOverlayOpacity,\n    heroButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    // Project Details\n    coverImage{..., asset->{_id, url, metadata{lqip, dimensions}}},\n    duration,\n    client,\n    site,\n    tags,\n    "slug": slug.current,\n    // Project Content\n    description,\n    // CTA Section\n    ctaTitle,\n    ctaSubtitle,\n    ctaPhoneNumber,\n    ctaButtons[]{\n      _key,\n      label,\n      linkType,\n      internalLink->{\n        _type,\n        "slug": slug.current\n      },\n      externalUrl,\n      phoneNumber,\n      email,\n      style\n    },\n    ctaBackgroundImage{..., asset->{_id, url, metadata{lqip, dimensions}}}\n  }\n': ProjectBySlugQueryResult
     '\n  *[_type == "settings"][0]{\n    _id,\n    _type,\n    footer,\n    menuItems[]{\n      _key,\n      ...@->{\n        _type,\n        "slug": slug.current,\n        title\n      }\n    },\n    ogImage,\n  }\n': SettingsQueryResult
     '\n  *[_type == $type && defined(slug.current)]{"slug": slug.current}\n': SlugsByTypeQueryResult
   }

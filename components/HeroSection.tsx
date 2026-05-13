@@ -38,7 +38,9 @@ export function HeroSection({data, dataAttribute}: HeroSectionProps) {
             alt="Hero background"
             width={1920}
             height={1080}
+            size="100vw"
             fill
+            priority
             classesWrapper="w-full h-full !rounded-none"
             data-sanity={dataAttribute?.('heroImage')}
           />

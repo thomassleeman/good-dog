@@ -38,6 +38,8 @@ export function PageCtaSection({
             alt="Contact background"
             width={1920}
             height={600}
+            size="100vw"
+            fill
             classesWrapper="w-full h-full !rounded-none"
           />
           <div className="absolute inset-0 bg-stone-900/80" />
